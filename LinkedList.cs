@@ -1,17 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Data.Common;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Threading.Tasks;
-using System.Transactions;
 
 namespace InterviewProgramsConsoleApp
 {
     public class Node
     {
         public int Data { get; set;}
-        public Node? Next { get; set;}
+        public Node Next { get; set;}
 
         public Node(int data)
         {
@@ -39,7 +32,7 @@ namespace InterviewProgramsConsoleApp
 
         }
 
-        public static void Print(Node? head)
+        public static void Print(Node head)
         {
             while (head != null)
             {
@@ -49,22 +42,26 @@ namespace InterviewProgramsConsoleApp
             Console.WriteLine();
         }
 
-        public static Node InsertAtBegining(Node? head, int data)
+        public static Node InsertAtBegining(Node head, int data)
         {
             var node = new Node(data);
+
+            if (head == null)
+                return node;
+
             node.Next = head;
             head = node;
 
             return head;
         }
 
-        public static Node InsertAtEnd(Node? head, int data)
+        public static Node? InsertAtEnd(Node? head, int data)
         {
-            if (head == null) {
+            if (head == null)
                 return new Node(data);
-        }
+            
             var curr = head;
-            while(curr?.Next != null)
+            while(curr.Next != null)
             {
                 curr = curr.Next;
             }
@@ -74,7 +71,7 @@ namespace InterviewProgramsConsoleApp
             return head;
         }
 
-        public static Node InsertAtPosition(Node? head, int pos, int data)
+        public static Node InsertAtPosition(Node head, int pos, int data)
         {
             if (pos < 1) return head;
                 
