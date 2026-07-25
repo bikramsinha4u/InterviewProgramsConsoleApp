@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -33,9 +34,9 @@ namespace LeetCode
             for(int i = 0; i < nums.Length; i++)
             {
                 var complement = target - nums[i];
-                if (dict.TryGetValue(complement, out _))
+                if (dict.TryGetValue(complement, out int val))
                 {
-                    return [i, dict[complement]];
+                    return [i, val];
                 }
 
                 dict[nums[i]] = i; 
