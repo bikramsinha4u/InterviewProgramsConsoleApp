@@ -1,12 +1,9 @@
-
-using System.Net.NetworkInformation;
-
 namespace G4G
 {
     public class Node
     {
-        public int Data { get; set;}
-        public Node Next { get; set;}
+        public int Data;
+        public Node Next;
 
         public Node(int data)
         {
@@ -40,14 +37,21 @@ namespace G4G
 
             Console.Write("DeleteFromPostion ");
             Print(DeleteFromPostion(head, 3));
+
+            Console.Write("SearchKeyExists ");
+            Console.WriteLine(SearchKeyExists(head, 3));
+
+            Console.Write("ReverseList ");
+            Print(ReverseList(head));
         }
 
         public static void Print(Node head)
         {
-            while (head != null)
+            var temp = head;
+            while (temp != null)
             {
-                Console.Write(head.Data + " ");
-                head = head.Next;
+                Console.Write(temp.Data + " ");
+                temp = temp.Next;
             }
             Console.WriteLine();
         }
@@ -183,6 +187,37 @@ namespace G4G
             prev.Next = curr.Next;
 
             return head;
+        }
+    
+        public static bool SearchKeyExists(Node head, int key)
+        {
+            var curr = head;
+
+            while(curr != null)
+            {
+                if(curr.Data == key) return true;
+                curr = curr.Next;
+            }
+
+            return false;
+        }
+    
+        public static Node ReverseList(Node head)
+        {
+            var curr = head;
+            Node prev = null;
+            Node next = null;
+            
+            while(curr != null)
+            {
+                next = curr.Next;
+                
+                curr.Next = prev;
+                prev = curr;
+                curr = next;
+            }
+
+            return prev;
         }
     }
 }
